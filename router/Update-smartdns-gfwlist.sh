@@ -24,7 +24,7 @@ wget -O $INPUT_FILE $URL
 if [ $? -eq 0 ]
 then
 	echo "Download successful, updating..."
-  mkdir -p $CONFIG_FLODER
+	mkdir -p $CONFIG_FLODER
 	cat /dev/null > $OUTPUT_FILE
 
 	cat $INPUT_FILE | while read line

@@ -9,7 +9,6 @@ URL="https://ispip.clang.cn/all_cn.txt"
 CONFIG_FLODER="/etc/smartdns"
 WHITELIST_CONFIG_FILE="whitelist-chnroute.conf"
 BLACKLIST_CONFIG_FILE="blacklist-chnroute.conf"
- 
 
 WHITELIST_OUTPUT_FILE="$CONFIG_FLODER/$WHITELIST_CONFIG_FILE"
 BLACKLIST_OUTPUT_FILE="$CONFIG_FLODER/$BLACKLIST_CONFIG_FILE"
@@ -22,9 +21,9 @@ wget -O $INPUT_FILE $URL
 if [ $? -eq 0 ]
 then
 	echo "Download successful, updating..."
-  mkdir -p $CONFIG_FLODER
+	mkdir -p $CONFIG_FLODER
 	cat /dev/null > $WHITELIST_OUTPUT_FILE
-  cat /dev/null > $BLACKLIST_OUTPUT_FILE
+	cat /dev/null > $BLACKLIST_OUTPUT_FILE
 
 	cat $INPUT_FILE | while read line
 	do

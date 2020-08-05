@@ -2,12 +2,18 @@
 #
 # Update Chnroute
 
-INPUT_FILE=$(mktemp)
-CONFIG_FLODER="/etc/smartdns"
-WHITELIST="$CONFIG_FLODER/whitelist-chnroute.conf"
-BLACKLIST="$CONFIG_FLODER/blacklist-chnroute.conf"
+# China IP Download Link
 URL="https://ispip.clang.cn/all_cn.txt"
 
+# Smartdns Config File Path
+CONFIG_FLODER="/etc/smartdns"
+WHITELIST_CONFIG_FILE="whitelist-chnroute.conf"
+BLACKLIST_CONFIG_FILE="blacklist-chnroute.conf"
+ 
+
+WHITELIST_OUTPUT_FILE="$CONFIG_FLODER/$WHITELIST_CONFIG_FILE"
+BLACKLIST_OUTPUT_FILE="$CONFIG_FLODER/$BLACKLIST_CONFIG_FILE"
+INPUT_FILE=$(mktemp)
 if [ "$1" != "" ]; then
 	URL="$1"
 fi
@@ -17,13 +23,13 @@ if [ $? -eq 0 ]
 then
 	echo "Download successful, updating..."
   mkdir -p $CONFIG_FLODER
-	cat /dev/null > $WHITELIST
-  cat /dev/null > $BLACKLIST
+	cat /dev/null > $WHITELIST_OUTPUT_FILE
+  cat /dev/null > $BLACKLIST_OUTPUT_FILE
 
 	cat $INPUT_FILE | while read line
 	do
-		echo "whitelist-ip $line" >> $WHITELIST
-		echo "blacklist-ip $line" >> $BLACKLIST
+		echo "whitelist-ip $line" >> $WHITELIST_OUTPUT_FILE
+		echo "blacklist-ip $line" >> $BLACKLIST_OUTPUT_FILE
 	done
 fi
 

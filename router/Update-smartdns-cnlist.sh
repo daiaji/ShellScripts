@@ -21,7 +21,7 @@ if [ "$1" != "" ]; then
 	PROXYDNS_NAME="$1"
 fi
 
-wget -O $INPUT_FILE $URL 
+curl -fsSLo $INPUT_FILE $URL 
  
 sed -i "s/^server=\/\(.*\)\/[^\/]*$/nameserver \/\1\/$PROXYDNS_NAME/g;/^nameserver/!d" $INPUT_FILE 2>/dev/null
 

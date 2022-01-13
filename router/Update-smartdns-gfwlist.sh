@@ -20,7 +20,7 @@ if [ "$1" != "" ]; then
 	PROXYDNS_NAME="$1"
 fi
 
-wget -O $INPUT_FILE $URL 
+curl -fsSLo $INPUT_FILE $URL 
 if [ $? -eq 0 ]
 then
 	echo "Download successful, updating..."
